@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./axios-v0.18.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="getInfo">按钮</button>
+</div>
+<script type="text/ecmascript-6">
+//    axios.get('./data.json').then(function (data) {
+//        console.log(data);
+//    })
+    Vue.prototype.$http1 = axios;
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            getInfo(){
+                this.$http1.get('http://api.map.baidu.com/location/ip?ak=SDa5wL2tKwoFIv2nhDxMv8U1G28Y5kSz').then((res) =>{
+                    console.log(res);
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
