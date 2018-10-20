@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vue.js"></script>
+    <script src="axios-v0.18.0.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!-- 品牌管理的 panel -->
+    <div class="panel panel-primary" style="margin-bottom: 15px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">品牌管理</h3>
+        </div>
+        <div class="panel-body form-inline">
+
+            <div class="input-group">
+                <span class="input-group-addon">品牌名称：</span>
+                <input type="text" class="form-control" v-model="name">
+            </div>
+
+            <div class="input-group">
+                <button class="btn btn-primary"  @click="addBrand">添加品牌</button>
+            </div>
+
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="品牌" v-model="keyword">
+               <span class="input-group-addon" id="basic-addon2">搜索</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 品牌列表的表格 -->
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>品牌名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item, i) in searchKey()" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.ctime | timeFormat}}</td>
+            <td>
+                <a href="javascript:;" @click="removeBrand(item.id)">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="8.案例.js"></script>
+
+</body>
+</html>

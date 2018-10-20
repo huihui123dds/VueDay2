@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-com1></my-com1>
+</div>
+<script>
+    Vue.component('my-com1', {
+        template:"<h1>{{msg | add}}</h1>>",
+        data(){
+            return {msg:'哈哈哈'}
+        },
+        filters:{
+            add(org){
+                return org+'~~~'
+            }
+        }
+    })
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {}
+    })
+</script>
+</body>
+</html>

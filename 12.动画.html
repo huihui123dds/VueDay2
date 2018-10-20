@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .v-enter, .v-leave-to{
+            transform: translate(0, 50px);
+            opacity: 0;
+        }
+        .v-enter-active, .v-leave-active{
+            transition: all 1s ease;
+        }
+        ul{
+            list-style: none;
+        }
+        li {
+            width:300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px dotted #ccc;
+            margin-bottom: 10px;
+
+        }
+        #bind {
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="agg">toggle</button>
+        <input type="text" v-model="name">
+        <transition-group tag="ul">
+            <li v-for="item in list" :key="item.id" v-cloak>姓名:{{item.name}}-----年龄:{{item.age}}</li>
+        </transition-group>
+    </div>
+    <script type="text/ecmascript-6">
+
+        const vm = new Vue({
+            el:'#app',
+            data:{
+//                flag:false,
+                name:'',
+                list: [
+                    {id:1,name:'zs', age:20},
+                    {id:2,name:'ls', age:21},
+                    {id:3,name:'ww', age:22},
+                    {id:4,name:'zl', age:23},
+                ],
+            },
+            methods:{
+                agg() {
+                    const abj = {id:this.list.length+1,name: this.name, age:20};
+                    this.list.push(abj);
+//                    this.flag = !this.flag
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

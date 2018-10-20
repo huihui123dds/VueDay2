@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--2.子----绑定父方法在子元素-->
+    <my-com @function="add"></my-com>
+</div>
+<script>
+    Vue.component("my-com", {
+        // 4.子----当子调用自己的child方法时,触发父事件,事件绑定成功
+        template:"<div><button @click='child'>点击我</button></div>",
+        data(){
+            return {
+                //子元素中的值,通过事件绑定传递到父方法中
+                childMsg:'子数据'
+            }
+        },
+        methods:{
+            child(){
+                // 3.子----并通过$emit()在子事件中调用父方法;   若需要给父传递参数值,值为第二个参数
+                this.$emit('function',this.childMsg);
+
+            }
+        }
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        methods: {
+            // 1.父----定义一个方法
+            add(child){
+                console.log('父方法被调用--->'+child);
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

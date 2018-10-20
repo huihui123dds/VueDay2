@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./animate.css">
+    <style>
+        #bind  {
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: red;
+        }
+    </style>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="flag=!flag">切换</button>
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEter">
+        <div id="bind" v-show="flag"></div>
+    </transition>
+</div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            flag:false
+        },
+        methods: {
+            beforeEnter(el) {
+                el.style.transform = "translate(0, 0)"
+            },
+            enter(el, done){
+                el.offsetHeight;
+                el.style.transform = "translate(300px, 300px)";
+                el.style.transition = "all 2s ease";
+                done();
+            },
+            afterEter(){
+                this.flag = false;
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="axios-v0.18.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="getInfo" @click="flag=!flag">get请求</button>
+    <p v-for="item in newArr">{{item.name}}</p>
+    <!--<button @click="postInfo">post请求</button>-->
+</div>
+<script type="application/javascript">
+    Vue.prototype.$http = axios;
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            flag:false,
+            newArr:[]
+        },
+        created(){
+
+        },
+        methods: {
+            async getInfo(){
+
+                const {data:arr} = await this.$http.get("data.json")
+                console.log(arr.data[0].name);
+                this.newArr = arr.data;
+            }
+        }
+    })
+</script>
+</body>
+</html>

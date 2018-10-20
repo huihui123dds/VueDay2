@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./animate.css">
+    <style>
+        h1  {
+            padding-left: 200px;
+        }
+    </style>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="flag=!flag">切换</button>
+    <transition enter-active-class="fadeInDown" leave-active-class="fadeOutDown">
+        <h1 v-show="flag" class="animated">哈哈哈哈哈</h1>
+    </transition>
+</div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            flag:false
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

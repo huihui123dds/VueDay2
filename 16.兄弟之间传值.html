@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-com1></my-com1>
+        <my-com2></my-com2>
+    </div>
+    <script>
+        const bus = new Vue()
+        Vue.component('my-com1', {
+            template: '<div>组件1<button @click="fun">组件一的值传递给组件二</button></div>',
+            data(){
+                return {
+                    msg:'组件1的数据'
+                }
+            },
+            methods: {
+                fun(){
+                    bus.$emit('aa', this.msg)
+                    console.log(this.msg);
+                }
+            }
+        })
+        Vue.component('my-com2', {
+            template: '<div>组件2{{myMsg}}</div>',
+            data(){
+                return {
+                    myMsg:''
+                }
+            },
+            created(){
+                bus.$on('aa', (other)=>{
+                    this.myMsg = other;
+//                console.log(this.myMsg);
+            })
+            }
+        })
+        const vm = new Vue({
+            el:'#app',
+            data:{}
+        })
+    </script>
+</body>
+</html>

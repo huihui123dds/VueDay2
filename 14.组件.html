@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-com :bmsg="{name:'zs', age:20}"></my-com>
+    </div>
+    <script>
+        Vue.component("my-com", {
+            template:"<div>{{bmsg.name}}-----{{bmsg.age}}</div>",
+            props:["bmsg"]
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:'护手霜'
+            }
+        })
+    </script>
+</body>
+</html>
